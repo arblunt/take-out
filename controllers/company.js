@@ -1,5 +1,5 @@
 const Company = require('../models').Company
-const Employee = require('../models').Employee
+
 
 const createCompany = (req, res) => {
    Company.create(req.body, (err, createdCompany)=> {

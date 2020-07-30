@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const Employee = require('./employee');
-const Company = require('./company')
+const Company = require('./company');
+const Entry = require('./entry');
 
 const connectionString = 'mongodb://localhost/takeout-app';
 
@@ -26,3 +27,4 @@ mongoose.connection.on('error', (error) => {
 
 exports.Employee = Employee;
 exports.Company = Company;
+exports.Entry = Entry; 

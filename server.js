@@ -11,7 +11,9 @@ app.get('/', (req, res) => {
 })
 
 
-// app.use('/company', routes.company)
+app.use('/company', routes.company)
+
+app.use('/entries', routes.entry)
 
 app.listen(3000, ()=>{
 	console.log('listening....');

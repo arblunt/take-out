@@ -1,4 +1,5 @@
 module.exports = {
     employee: require('./employee'),
-    company: require('./company')
+    company: require('./company'),
+    entry: require('./entry')
 }
