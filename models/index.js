@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Employee = require('./employee');
 const Company = require('./company');
 const Entry = require('./entry');

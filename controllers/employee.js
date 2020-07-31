@@ -19,7 +19,9 @@ const showEmployee = (req, res) => {
             return res.status(500).json(err);
         }
         // res.status(200).json(foundEmployee);
-      res.render('profile.ejs')
+      res.render('profile.ejs', {
+          employee: foundEmployee
+      })
     })
 }
 
@@ -35,9 +37,10 @@ const login = (req,res) => {
         if(err) {
             return res.status(500).json(err);
         }
-        res.render('profile.ejs')
+        res.redirect(`/employee/${foundEmployee._id}`)
     })
 }
+
 const showAllEmployees = (req,res) => {
     Employee.find({}, (err, foundEmployees) => {
         if(err) {
@@ -57,12 +60,27 @@ const deleteEmployee = (req, res) => {
     });
 }
 
+// const renderEdit = (req,res) => {
+//     Employee.findOne({
+//         name: req.body.name,
+//         username: req.body.username, 
+//         password: req.body.password
+//     }, (err, updatedEmployee) => {
+//         if(err) {
+//             return res.status(500).json(err);
+//         }
+//         res.redirect(`/employee/${updatedEmployee._id}`)
+//     })
+// }
+
+
+
 const editEmployee = (req, res) => {
     Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedEmployee) => {
         if(err) {
             return res.status(500).json(err);
         }
-        res.status(200).json(updatedEmployee)
+        res.redirect(`/employee/${updatedEmployee._id}`)
     });
 }
 

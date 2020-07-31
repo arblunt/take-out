@@ -10,8 +10,7 @@ const createCompany = (req, res) => {
     });
 }
 const showCompany = (req,res) => {
-    Company.findbyId(req.params.id)
-    .populate('employee')
+    Company.findById(req.params.id)
     .exec((err, foundCompany) => {
         if(err) {
             return res.status(500).json(err);

@@ -1,17 +1,40 @@
+const Employee = require('../models').Employee
 const Entry = require('../models').Entry
-
+const Company = require('../models').Company
 
 const createEntry = (req, res) => {
-    Employee.create(req.body, (err, createEntry) => {
+    if (!(req.body.employee && req.body.company)) {
+        return res.status(500).send("Bad Request");
+    }
+    Employee.findById(req.body.employee, (err, foundEmployee) => {
         if(err){
             return res.status(500).json(err);
         }
+        if(!foundEmployee) {
+            return res.status(500).send("Employee Not Found");
+        }
+    })
+    Company.findById(req.body.company, (err, foundCompany) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+        if(!foundCompany) {
+            return res.status(500).send("Company Not Found");
+        }
+    })
+    Entry.create(req.body, (err, createEntry) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+
         res.status(200).json(createEntry);
     });
 }
+
 const showEntry = (req,res) => {
-    Entry.findbyId(req.params.id)
-    .populate('entry')
+    Entry.findById(req.params.id)
+    .populate('employee')
+    .populate('company')
     .exec((err, foundEntry) => {
         if(err) {
             return res.status(500).json(err);
@@ -27,7 +50,8 @@ const showAllEntries= (req, res) => {
         if(err) {
             return res.status(500).json(err);
         }
-        res.status(200).json(foundAllEntries);
+       res.render('explore.ejs', {
+           allentries: foundAllEntries})
     })
 }
 
