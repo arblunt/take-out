@@ -39,10 +39,12 @@ const showEntry = (req,res) => {
         if(err) {
             return res.status(500).json(err);
         }
-        res.status(200).json(foundEntry)
-    })
+        res.render('show.ejs', {
+            showentry: foundEntry})
+     })
 
 }
+
 
 const showAllEntries= (req, res) => {
     Entry.find({}, (err, foundAllEntries) => {
@@ -56,12 +58,21 @@ const showAllEntries= (req, res) => {
 }
 
 const deleteEntry= (req, res) => {
-    Entry.findByIdAndRemove(req.params.id, (err, deleteEntry)=> {
-        if(err) {
+    Employee.findById(req.body.employee, (err, foundEmployee) => {
+        if(err){
             return res.status(500).json(err);
         }
-        res.status(200).json(deleteEntry);
-    });
+        if(!foundEmployee) {
+            return res.status(500).send("Employee Not Found");
+        }
+    Entry.findByIdAndRemove(req.params.id, (err, deleteEntry)=> {
+            if(err) {
+                return res.status(500).json(err);
+            }
+            res.redirect(`/employee/${foundEmployee._id}`)
+        });
+    })
+   
 }
 
 const editEntry = (req, res) => {

@@ -1,5 +1,5 @@
 const Employee = require('../models').Employee;
-
+const Entry = require('../models').Entry
 
 const createEmployee = (req, res) => {
     Employee.create(req.body, (err, createdEmployee) => {
@@ -18,10 +18,17 @@ const showEmployee = (req, res) => {
         if(err) {
             return res.status(500).json(err);
         }
+        Entry.find({"employee":req.params.id}, (err, foundEntryByEmployee) => {
+            if(err) {
+                return res.status(500).json(err);
+            }
+            res.render('profile.ejs', {
+                employee: foundEmployee,
+                entries: foundEntryByEmployee
+            })
+        })
         // res.status(200).json(foundEmployee);
-      res.render('profile.ejs', {
-          employee: foundEmployee
-      })
+     
     })
 }
 

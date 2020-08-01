@@ -6,6 +6,7 @@ const routes = require('./routes');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/employee', routes.employee)
+app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })

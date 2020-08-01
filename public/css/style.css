@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
+body {
+    background-color: turquoise;
+    background-image: url("https://www.lefthudson.com/wp-content/uploads/2019/11/lined-paper-backgrounds-unique-lined-paper-texture-background-powerpoint-new-graphicpanic-ideas-of-lined-paper-backgrounds.jpg");
+    text-align: center;
+}
+h1 {
+    font-family: 'Homemade Apple', cursive;
+}

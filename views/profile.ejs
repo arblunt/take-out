@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type ="text/css" href="css/style.css" />
     <title>Document</title>
 </head>
 <body>
@@ -18,5 +19,19 @@
 
     <form action = "/employee/profile/<%=employee._id%>?_method=DELETE" method = "POST">
         <br> <br>
-        <input type="submit" value="Delete User" />
+        <input type="submit" value="Delete Profile" />
     </form>
+        <h3>My Experiences: </h3>
+        <% for(let i=0; i<entries.length; i++){ %>
+            <%=entries[i].title%>
+            <form action="/entries/<%=entries[i]._id%>?_method=DELETE" method="POST">
+                <input type = "submit" value="delete" />
+            </form>
+        <% } %>
+        <br> <br>
+  
+       
+        
+        <a href="/entries/all">View All Entries</a>
+
+  

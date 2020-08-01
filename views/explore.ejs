@@ -9,6 +9,17 @@
 <body>
 
     <h1>See All Submitted Entries</h1>
+    <ul>
+        <% for(let i=0; i <allentries.length; i++) {%>
+            <li>
+                <a href="/entries/<%=allentries[i]._id%>"><%=allentries[i].title%></a>
+            </li>
+           
+           
+            <br><br>
+        <% } %>
+        
+    </ul>
     
         
 </body>
