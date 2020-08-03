@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head></head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+        <link rel="stylesheet" type ="text/css" href="/css/style.css" />
+
+    </head>
     <body>
         <h1>Safe Space for Expression</h1>
         <h2>Write Out Your Experience</h2>
 
-        <form action= "/entries" method = "POST">
+        <form action= "/entries/new" method = "POST">
             Title:<input type="text" name="title" />
             Entry: <input type = "text" name = "body" />
-            Employee: <input type="text" name ="employee" />
-            Company: <input type = "text" name="company"/>
+            <input type = "hidden" name = "employee" value = "5f2748300d3d6a3854fdeff5" />
+            Company: <select name ="company"> 
+                <% for(let i=0; i<entries.company.length; i++){ %>
+                    <option value="<%=entries.company[i]._id%>"><%=entries.company[i].name%></option>
+                    <% } %>
+            </select>
             <input type = "submit" value = "Sumbit Entry" />
         </form>
         <p>Expression is the key to unlock change, writing out your experience will not have

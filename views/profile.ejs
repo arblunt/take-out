@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type ="text/css" href="css/style.css" />
+    <link rel="stylesheet" type ="text/css" href="/css/style.css" />
     <title>Document</title>
 </head>
 <body>
     <h1>Welcome to takeout! <br> <%=employee.name%> <br> </h1>
 
-    <form action="/employee/profile/<%=employee._id%>?_method=PUT" method="POST">
+    <form action="/employee/<%=employee._id%>?_method=PUT" method="POST">
         Name: <input type ="text" name ="name" value="<%=employee.name%>"/>
         Username: <input type ="text" name= "username" value ="<%=employee.username%>"/> <br> <br>
         Password: <input type ="password" name="password" value= "<%=employee.password%>"/> <br> <br>
@@ -17,13 +17,13 @@
         <input type ="submit" value="Edit Profile"> 
     </form>
 
-    <form action = "/employee/profile/<%=employee._id%>?_method=DELETE" method = "POST">
+    <form action = "/employee/<%=employee._id%>?_method=DELETE" method = "POST">
         <br> <br>
         <input type="submit" value="Delete Profile" />
     </form>
         <h3>My Experiences: </h3>
         <% for(let i=0; i<entries.length; i++){ %>
-            <%=entries[i].title%>
+            <a href="/entries/<%=entries[i]._id%>"><%=entries[i].title%></a>
             <form action="/entries/<%=entries[i]._id%>?_method=DELETE" method="POST">
                 <input type = "submit" value="delete" />
             </form>
@@ -34,5 +34,6 @@
         
         <a href="/entries/all">View All Entries</a>
         <a href="/entries/new">Write it Out </a>
+        <a href="/" class="button">Log Out</a>
 
   

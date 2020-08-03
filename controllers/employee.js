@@ -6,7 +6,15 @@ const createEmployee = (req, res) => {
         if(err){
             return res.status(500).json(err);
         }
-        res.status(200).json(createdEmployee);
+        Entry.find({"employee":req.params.id}, (err, foundEntryByEmployee) => {
+            if(err) {
+                return res.status(500).json(err);
+            }
+            res.render('profile.ejs', {
+                employee: createdEmployee,
+                entries: foundEntryByEmployee
+            })
+        })
     });
 }
 
@@ -44,7 +52,11 @@ const login = (req,res) => {
         if(err) {
             return res.status(500).json(err);
         }
+        if(foundEmployee) {
         res.redirect(`/employee/${foundEmployee._id}`)
+        } else {
+            return res.status(404).json(err);
+        }
     })
 }
 
@@ -63,7 +75,8 @@ const deleteEmployee = (req, res) => {
         if(err) {
             return res.status(500).json(err);
         }
-        res.status(200).json(deleteEmployee);
+        res.redirect('/')
+    
     });
 }
 
@@ -84,10 +97,19 @@ const deleteEmployee = (req, res) => {
 
 const editEmployee = (req, res) => {
     Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedEmployee) => {
+        console.log(updatedEmployee)
         if(err) {
             return res.status(500).json(err);
         }
-        res.redirect(`/employee/${updatedEmployee._id}`)
+        Entry.find({"employee":updatedEmployee.id}, (err, foundEntryByEmployee) => {
+            if(err) {
+                return res.status(500).json(err);
+            }
+            res.render('profile.ejs', {
+                employee: updatedEmployee,
+                entries: foundEntryByEmployee
+            })
+        })
     });
 }
 
