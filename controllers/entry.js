@@ -2,6 +2,10 @@ const Employee = require('../models').Employee
 const Entry = require('../models').Entry
 const Company = require('../models').Company
 
+const renderNew = (req,res) => {
+    res.render('new.ejs')
+}
+
 const createEntry = (req, res) => {
     if (!(req.body.employee && req.body.company)) {
         return res.status(500).send("Bad Request");
@@ -27,7 +31,8 @@ const createEntry = (req, res) => {
             return res.status(500).json(err);
         }
 
-        res.status(200).json(createEntry);
+        // res.status(200).json(createEntry);
+        res.redirect('/entries');
     });
 }
 
@@ -48,14 +53,16 @@ const showEntry = (req,res) => {
 
 const showAllEntries= (req, res) => {
     Entry.find({}, (err, foundAllEntries) => {
-
-        if(err) {
-            return res.status(500).json(err);
+        if(err){
+           return res.status(500).json  
         }
        res.render('explore.ejs', {
-           allentries: foundAllEntries})
+           allentries: foundAllEntries
+       })
     })
+
 }
+
 
 const deleteEntry= (req, res) => {
     Employee.findById(req.body.employee, (err, foundEmployee) => {
@@ -87,6 +94,7 @@ const editEntry = (req, res) => {
 
 module.exports = {
     createEntry,
+    renderNew,
     showEntry,
     showAllEntries,
     deleteEntry,

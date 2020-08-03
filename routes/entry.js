@@ -5,6 +5,7 @@ const ctrl = require('../controllers');
 router.post('/', ctrl.entry.createEntry);
 router.get('/all', ctrl.entry.showAllEntries);
 router.get('/:id', ctrl.entry.showEntry);
+router.get('/new', ctrl.entry.renderNew);
 router.delete('/:id', ctrl.entry.deleteEntry);
 router.put('/:id', ctrl.entry.editEntry);
 
