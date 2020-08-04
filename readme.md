@@ -7,3 +7,10 @@ undo; unpick;
 
 user-stories: https://trello.com/b/sW4jJyO0/take-out-final-project
 
+Tech Used:  
+
+Mongo DB - back end
+EJS - front-end 
+CSS
+JS
+
