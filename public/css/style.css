@@ -8,3 +8,65 @@ body {
 h1 {
     font-family: 'Homemade Apple', cursive;
 }
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 20px;
+    margin: 25px;
+}
+nav a:hover {
+    color: blue;
+}
+#notes div {
+    position: relative;
+    min-height: 100px;
+    margin: 25px 25px;
+    padding: 60px 15px 15px 15px;
+    background-color: peachpuff;
+    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    display: inline-block;
+
+    
+}
+
+
+
+#notes div p {
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+}
+#notes div::before {
+    content: ' ';
+    display: inline-block;
+    position: absolute;
+    top: -15px;
+    width: 75px;
+    height: 25px;
+    z-index: 2;
+    background-color: rgba(243,245,228,0.5);
+    border: 2px solid rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0 0 5px #888;
+    -moz-box-shadow: 0 0 5px #888;
+    box-shadow: 2px 2px 2px #000;
+    
+}
+
+ul li {
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 20px;
+    margin: 25px;
+    
+}
+
+.warning {
+    color: red
+}
+
+
+ 

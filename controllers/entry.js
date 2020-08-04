@@ -3,37 +3,52 @@ const Entry = require('../models').Entry
 const Company = require('../models').Company
 
 const renderNew = (req,res) => {
-    res.render('new.ejs')
+    Company.find({}, (err, foundAllCompanies) => {
+        if(err){
+           return res.status(500).json  
+        } 
+        res.render('new.ejs', {
+            company: foundAllCompanies,
+            employeeId: req.params.id
+        })
+    })
+   
 }
 
 const createEntry = (req, res) => {
-    if (!(req.body.employee && req.body.company)) {
+    console.log(req.params.id)
+    if (!(req.params.id && req.body.company)) {
         return res.status(500).send("Bad Request");
     }
-    Employee.findById(req.body.employee, (err, foundEmployee) => {
+    Employee.findById(req.params.id, (err, foundEmployee) => {
+        console.log(foundEmployee)
         if(err){
             return res.status(500).json(err);
         }
         if(!foundEmployee) {
             return res.status(500).send("Employee Not Found");
         }
+        req.body.employee = foundEmployee._id
+        Company.findById(req.body.company, (err, foundCompany) => {
+            if(err){
+                return res.status(500).json(err);
+            }
+            if(!foundCompany) {
+                return res.status(500).send("Company Not Found");
+            }
+            console.log(req.body)
+            Entry.create(req.body, (err, createEntry) => {
+                if(err){
+                    return res.status(500).json(err);
+                }
+        
+                // res.status(200).json(createEntry);
+                res.redirect(`/employee/${foundEmployee._id}`)
+            });
+        })
     })
-    Company.findById(req.body.company, (err, foundCompany) => {
-        if(err){
-            return res.status(500).json(err);
-        }
-        if(!foundCompany) {
-            return res.status(500).send("Company Not Found");
-        }
-    })
-    Entry.create(req.body, (err, createEntry) => {
-        if(err){
-            return res.status(500).json(err);
-        }
-
-        // res.status(200).json(createEntry);
-        res.redirect('/entries');
-    });
+    
+   
 }
 
 const showEntry = (req,res) => {
@@ -41,6 +56,7 @@ const showEntry = (req,res) => {
     .populate('employee')
     .populate('company')
     .exec((err, foundEntry) => {
+        console.log(foundEntry)
         if(err) {
             return res.status(500).json(err);
         }
@@ -65,20 +81,12 @@ const showAllEntries= (req, res) => {
 
 
 const deleteEntry= (req, res) => {
-    Employee.findById(req.body.employee, (err, foundEmployee) => {
-        if(err){
-            return res.status(500).json(err);
-        }
-        if(!foundEmployee) {
-            return res.status(500).send("Employee Not Found");
-        }
     Entry.findByIdAndRemove(req.params.id, (err, deleteEntry)=> {
             if(err) {
                 return res.status(500).json(err);
             }
-            res.redirect(`/employee/${foundEmployee._id}`)
+            res.redirect('/entries/all');
         });
-    })
    
 }
 
