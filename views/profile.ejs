@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Welcome to takeout! <br> <%=employee.name%> <br> </h1>
-
+    <div class="profile">
     <form action="/employee/<%=employee._id%>?_method=PUT" method="POST">
         Name: <input type ="text" name ="name" value="<%=employee.name%>"/>
         Username: <input type ="text" name= "username" value ="<%=employee.username%>"/> <br> <br>
@@ -21,7 +21,7 @@
         <br> <br>
         <input type="submit" value="Delete Profile" />
     </form>
-        <h3>My Experiences: </h3>
+        <h1>My Experiences: </h1>
         <% for(let i=0; i<entries.length; i++){ %>
             <a href="/entries/<%=entries[i]._id%>"><%=entries[i].title%></a>
             <form action="/entries/<%=entries[i]._id%>?_method=DELETE" method="POST">
@@ -30,10 +30,11 @@
         <% } %>
         <br> <br>
   
-       
-        
+       </div>
+        <nav>
         <a href="/entries/all">View All Entries</a>
         <a href="/entries/new/<%=employee._id%>">Write it Out </a>
         <a href="/" class="button">Log Out</a>
+        </nav>
 
   

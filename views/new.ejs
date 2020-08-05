@@ -9,11 +9,10 @@
     <body>
         <h1>Safe Space for Expression</h1>
         <h2>Write Out Your Experience</h2>
-
+        <div class = "container">
         <form action= "/entries/new/<%=employeeId%>" method = "POST">
             Title:<input type="text" name="title" />
-            Entry: <input type = "text" name = "body" />
-           
+            Entry: <input type = "text" name = "body" id="entrybox"/>
             Company: <select name ="company"> 
                 <% for(let i=0; i<company.length; i++){ %>
                     <option value="<%=company[i]._id%>"><%=company[i].name%></option>
@@ -21,6 +20,7 @@
             </select>
             <input type = "submit" value = "Sumbit Entry" />
         </form>
+    </div>
         <p class= "warning">Expression is the key to unlock change, writing out your experience will not have
             a negative effect on your position or future career with your company
         </p>

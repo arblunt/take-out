@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
 
 body {
-    background-color: turquoise;
     background-image: url("https://www.lefthudson.com/wp-content/uploads/2019/11/lined-paper-backgrounds-unique-lined-paper-texture-background-powerpoint-new-graphicpanic-ideas-of-lined-paper-backgrounds.jpg");
     text-align: center;
+   
 }
 h1 {
     font-family: 'Homemade Apple', cursive;
@@ -54,7 +54,8 @@ nav a:hover {
     
 }
 
-ul li {
+
+ul li a {
     list-style-type: none;
     text-decoration: none;
     color: black;
@@ -63,10 +64,73 @@ ul li {
     margin: 25px;
     
 }
+ul li {
+    list-style-type: none;
+    text-decoration: none;
+}
 
 .warning {
-    color: red
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: monospace;
 }
+
+input[type=text], select, textarea, option {
+    width: 100%;
+    padding: 12px;
+   border: 1px solid #ccc; 
+   border-radius: 4px;
+   box-sizing: border-box;
+   margin-top: 6px; 
+    margin-bottom: 16px; 
+    resize: vertical 
+  }
+   #entrybox {
+       height: 300px;
+   }
+
+input[type=password], select, textarea {
+    width:100%;
+    padding: 12px;
+   border: 1px solid #ccc; 
+   border-radius: 4px;
+   box-sizing: border-box;
+   margin-top: 6px; 
+    margin-bottom: 16px; 
+    resize: vertical 
+  }
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+   border-radius: 4px;
+   cursor: pointer;
+  }
+ 
+  input[type=submit]:hover {
+   background-color: #45A049;
+  }
+  .container {
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    border-radius: 5px;
+    background-color:peachpuff;
+    padding: 20px;
+    justify-content: center;
+    font-family: 'Homemade Apple', cursive;
+  }
+ .profile {
+    margin: auto;
+    max-width: 500px;
+    border-radius: 5px;
+    background-color:peachpuff;
+    padding: 20px;
+    justify-content: center;
+    font-family: 'Homemade Apple', cursive;
+  }
 
 
  
