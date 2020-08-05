@@ -7,6 +7,15 @@ undo; unpick;
 
 user-stories: https://trello.com/b/sW4jJyO0/take-out-final-project
 
+Resources 
+https://en.wikipedia.org/wiki/Microaggression
+https://www.cnn.com/2020/06/05/health/racial-microaggressions-examples-responses-wellness/index.html
+https://www.thoughtco.com/microaggression-definition-examples-4171853
+https://www.cambridgema.gov/-/media/Files/officeofthemayor/2019/deepmicroaggressionsworksheetfilledin012619.pdf
+https://hbr.org/2020/07/when-and-how-to-respond-to-microaggressions
+Inspiration: Citizen by Claudia Rankine
+
+
 Tech Used:  
 
 Mongo DB - back end
